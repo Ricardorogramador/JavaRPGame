@@ -1,10 +1,15 @@
 import java.util.Scanner;
 
 public class GameLoop {
-    Player player = new Player("Ricardo", 100, 20, 20, 5, 5, 5, 5, "1", true );
+    Player player;
+
+    public GameLoop(Player player) {
+        this.player = player;
+    }
+
     Monster monster = null;
     RandomBattleGenerator generator = new RandomBattleGenerator();
-    Logic1 logic = new Logic1();
+    BattleLogic logic = new BattleLogic();
     int option;
     int step = 0;
     Scanner  enter = new Scanner(System.in);
@@ -44,7 +49,7 @@ public class GameLoop {
             }
             }
         System.out.println(player.getName() + " is dead");
-        if (player.getId_player().equals("1")){
+        if (player.getId_player().equals("Ricardo")){
             System.out.println("Player has been deleted");
         }
         }

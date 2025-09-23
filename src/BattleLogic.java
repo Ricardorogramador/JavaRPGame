@@ -1,4 +1,4 @@
-public class Logic1 {
+public class BattleLogic {
 
 public void attack(Player player, Monster monster){
     double playerRawDamage = player.getAttack();
@@ -33,15 +33,20 @@ public void attack(Player player, Monster monster){
 
     public void levelUP(Player player, Monster monster){
     double xpToLvlUp = player.getMaximumXP();
+    //TO ADJUST
     double xpCalculation = (player.getWisdom() * 1.2) + monster.getGiveXP() + player.getXp();
-    if (xpCalculation >= xpToLvlUp){
+    while (xpCalculation >= xpToLvlUp){
         int lvlUp = player.getLevelPlayer() + 1;
         System.out.println("You level up: " + lvlUp);
         player.setLevelPlayer(lvlUp);
-        double maximumXP = player.getMaximumXP() * 1.2;
+        xpCalculation -= xpToLvlUp;
+        //TO ADJUST
+        double maximumXP = player.getMaximumXP() * 1.3;
         player.setMaximumXP(maximumXP);
         player.setXp(0);
         }
-    player.setXp(xpCalculation - xpToLvlUp);
+    player.setXp(xpCalculation);
+        System.out.println("XP gained: " + xpCalculation);
+        System.out.println("Your xp -> " + player.getXp() + "/" + player.getMaximumXP() + " <- XP needed to lvl up");
     }
 }
