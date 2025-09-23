@@ -1,56 +1,58 @@
 # JavaRPGame
 
-JavaRPGame is a simple turn-based RPG game designed for practice purposes. This project aims to help learn and reinforce core Java concepts, including object-oriented programming, game loops, and random events. The game is played via the console and is currently written in English.
+JavaRPGame is a simple turn-based RPG console game developed as a self-study project to practice and improve my Java skills. The main purpose is to learn core Java concepts, experiment with game logic, and later, integrate a database using JDBC. The game is written in English and designed primarily for personal learning and exploration.
 
 ## Purpose
 
-This project serves as a practical exercise to:
-- Strengthen Java programming skills.
-- Experiment with turn-based game logic.
-- Prepare for future integration with databases using JDBC.
+This project was created for my own study and experimentation, covering topics such as:
+- Object-oriented programming in Java.
+- Turn-based RPG mechanics and game loop design.
+- Preparation for integrating a relational database using JDBC.
 
 ## Features
 
-- Console-based gameplay.
-- Basic RPG mechanics: player and monster entities, battles, leveling up, and random encounters.
-- Structured classes such as `Player`, `Monster`, `Battle`, `Entity`, and game logic.
-- All data currently managed in code. **Note:** In the final version, all entities and game data will be managed directly from the database.
+- Console-based turn-based RPG gameplay.
+- Basic mechanics including player and monster entities, random encounters, battles, leveling, and stats.
+- All core data and logic currently managed within the codebase.
+- Classes include `Player`, `Monster`, `Entity`, `Battle`, and game logic components.
+
+**Note:** In the final version, all entities and game data will be managed directly from a PostgreSQL database.
+
+## Planned Technologies
+
+- **Java**: Core language for the project.
+- **PostgreSQL**: All game data (players, monsters, battles, etc.) will eventually be stored and managed in a PostgreSQL database.
+- **JDBC**: Java Database Connectivity for interacting with the database.
+- **DBeaver Community Edition**: To design and manage the PostgreSQL database.
 
 ## Upcoming Features
 
-- **PostgreSQL Database Integration**: All game data (players, monsters, battles, etc.) will be stored and managed in a PostgreSQL database.
-- **JDBC**: Database access will be handled via JDBC, providing hands-on experience with SQL and Java database connectivity.
-- **DBeaver Community Edition**: Used for designing and managing the PostgreSQL database.
-
-## Technologies
-
-- **Java** (core language for the game)
-- **PostgreSQL** (planned for storing game data)
-- **JDBC** (planned for database connectivity)
-- **DBeaver Community Edition** (recommended for database management and queries)
+- Migration of all game data management to PostgreSQL via JDBC.
+- More advanced battle logic and entity management.
+- Improved code structure for maintainability and extensibility.
 
 ## Getting Started
 
 ### Prerequisites
 
-- Java Development Kit (JDK) 8 or higher
-- (Future) PostgreSQL database and DBeaver Community Edition
+- Java Development Kit (JDK) 8 or higher.
+- (Future) PostgreSQL, DBeaver Community Edition.
 
-### Running the Project
+### Running the Game
 
-1. Clone this repository:
+1. Clone the repository:
     ```bash
     git clone https://github.com/Ricardorogramador/JavaRPGame.git
     ```
-2. Open the project in your preferred IDE (e.g., IntelliJ IDEA).
+2. Open the project in your preferred IDE (e.g. IntelliJ IDEA).
 3. Compile and run the main game class.
 4. Play the game in your console.
 
-*Database integration is not yet included. All data is currently managed in code.*
+*All game data is currently managed in code. Database integration will be added in the future.*
 
-## Code Structure Example
+## Code Example
 
-Some of the main components include:
+Some of the main components:
 
 ```java
 public class GameLoop {
@@ -64,16 +66,10 @@ public abstract class Entity {
 }
 ```
 
-## Notes
-
-- The game is intended for learning and experimentation, not for production use.
-- All database-related features (PostgreSQL, JDBC) will be added in future commits.
-- All game logic and data management will be migrated from code to database for more advanced practice.
-
 ## License
 
-This project is open-source and free to use for learning purposes.
+This project is open-source and free to use for observation or personal learning.
 
 ---
 
-Enjoy learning Java and building your own RPG systems!
+Thank you for checking out the project!
