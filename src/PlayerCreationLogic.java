@@ -16,7 +16,7 @@
             player.setIntelligence(1);
             boolean statsComplete = false;
             do {
-                if (statsComplete != true){
+                if (!statsComplete){
                     System.out.println("1. 1+ point in strength");
                     System.out.println("2. 1+ point in intelligence");
                     System.out.println("3. 1+ point in wisdom");
