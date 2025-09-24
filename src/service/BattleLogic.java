@@ -1,3 +1,8 @@
+package service;
+
+import model.Monster;
+import model.Player;
+
 public class BattleLogic {
 
 public void attack(Player player, Monster monster){

@@ -1,3 +1,8 @@
+package service;
+
+import model.Monster;
+import model.Player;
+
 import java.util.Random;
 
 public class RandomBattleGenerator {

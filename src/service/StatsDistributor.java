@@ -1,3 +1,7 @@
+package service;
+
+import model.Player;
+
 import java.util.Scanner;
 
 public class StatsDistributor {

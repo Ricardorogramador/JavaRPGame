@@ -1,4 +1,9 @@
-import java.sql.SQLOutput;
+package controller;
+
+import service.*;
+import model.Monster;
+import model.Player;
+
 import java.util.Scanner;
 
 public class GameLoop {
@@ -62,7 +67,7 @@ public class GameLoop {
         }
         System.out.println(player.getName() + " is dead");
         if (player.getId_player().equals("Ricardo")) {
-            System.out.println("Player has been deleted");
+            System.out.println("model.Player has been deleted");
         }
     }
 }

@@ -1,4 +1,6 @@
-public class Monster extends  Entity{
+package model;
+
+public class Monster extends Entity {
     private String id_monster;
     private double giveXP;
     private int levelMonster;

@@ -1,3 +1,5 @@
+package model;
+
 public abstract class Entity {
     private String name;
     private double hp;
@@ -88,7 +90,7 @@ public abstract class Entity {
 
     @Override
     public String toString() {
-        return "Entity{" +
+        return "model.Entity{" +
                 "name='" + name + '\'' +
                 ", strength=" + strength +
                 ", intelligence=" + intelligence +

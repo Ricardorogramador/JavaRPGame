@@ -1,3 +1,9 @@
+package service;
+
+import model.Monster;
+import model.Player;
+import interfaces.*;
+
 import java.util.Scanner;
 
 public class HumanLvlUp implements LevelUpStrategy {

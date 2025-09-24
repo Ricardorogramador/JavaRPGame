@@ -1,7 +1,11 @@
+package service;
+
+import model.Player;
+
 import java.util.Random;
 import java.util.Scanner;
-
-public class RestEvent implements EventsInterface{
+import interfaces.*;
+public class RestEvent implements EventsInterface {
 
     @Override
     public void event(Player player) {

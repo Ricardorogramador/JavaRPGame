@@ -1,11 +1,13 @@
-public class Player extends Entity{
+package model;
+
+public class Player extends Entity {
     private String id_player;
     private double xp = 0;
     private int levelPlayer = 1;
     private double maximumXP = 100;
     private boolean alive;
     private double maximumHP;
-    private  Race race;
+    private Race race;
 
     public Player() {
     }

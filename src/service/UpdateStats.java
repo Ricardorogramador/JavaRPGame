@@ -1,3 +1,8 @@
+package service;
+
+import model.Player;
+import model.Race;
+
 public class UpdateStats {
     public void statsUpdate(Player player){
         if (player.getRace() == Race.HUMAN){

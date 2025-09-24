@@ -1,3 +1,9 @@
+package service;
+
+import model.Player;
+    import model.Race;
+    import interfaces.*;
+
     import java.util.Scanner;
 
     public class InitializePlayer implements InitializePlayerInterface {
