@@ -5,9 +5,9 @@ public class Main {
         Player player = new Player();
 
         //Player creation
-        PlayerCreationLogic creator = new PlayerCreationLogic();
+        InitializePlayer creator = new InitializePlayer();
         creator.createPlayer(player);
-        creator.calculatePlayer(player);
+        creator.initializePlayer(player);
         //GameLoop start
         GameLoop gameLoop = new GameLoop(player);
         gameLoop.gameLoop();

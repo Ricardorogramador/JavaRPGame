@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class GameLoop {
@@ -9,6 +10,8 @@ public class GameLoop {
 
     Monster monster = null;
     RandomBattleGenerator generator = new RandomBattleGenerator();
+    RestEvent restEvent = new RestEvent();
+    UpdateStats updateStats = new UpdateStats();
     BattleLogic logic = new BattleLogic();
     HumanLvlUp humanLvlUp = new HumanLvlUp();
     int option;
@@ -17,36 +20,44 @@ public class GameLoop {
 
     public void gameLoop() {
         while (player.isAlive()) {
-            step++;
+            System.out.println("Press ENTER to do a step.");
+            System.out.println("Total steps: " + step);
             enter.nextLine();
-            monster = generator.randomBattle(player);
-            if (monster != null) {
-                System.out.println("A " + monster.getName() + " has appeared");
-                do {
-                    System.out.println("The battle has started");
-                    System.out.println("1. Attack");
-                    System.out.println("2. Defense");
-                    option = enter.nextInt();
-                    switch (option) {
-                        case 1:
-                            logic.attack(player, monster);
-                            if (monster.getHp() <= 0) {
-                                humanLvlUp.levelUp(player, monster);
-                            }
-                            if (player.getHp() <= 0) {
-                                player.setAlive(false);
-                            }
-                            break;
-                        case 2:
-                            logic.defend(player, monster);
-                            if (player.getHp() <= 0) {
-                                player.setAlive(false);
-                            }
-                            break;
-                    }
-                } while (monster.getHp() > 0 && player.isAlive());
+            step++;
+            double roll = Math.random();
+            if (roll < 0.2) {
+                restEvent.event(player);
             } else {
-                System.out.println("Another step");
+                monster = generator.randomBattle(player);
+                if (monster != null) {
+                    System.out.println("A " + monster.getName() + " has appeared");
+                    do {
+                        System.out.println("The battle has started");
+                        System.out.println("1. Attack");
+                        System.out.println("2. Defense");
+                        option = enter.nextInt();
+                        switch (option) {
+                            case 1:
+                                logic.attack(player, monster);
+                                if (monster.getHp() <= 0) {
+                                    humanLvlUp.levelUp(player, monster);
+                                    updateStats.statsUpdate(player);
+                                }
+                                if (player.getHp() <= 0) {
+                                    player.setAlive(false);
+                                }
+                                break;
+                            case 2:
+                                logic.defend(player, monster);
+                                if (player.getHp() <= 0) {
+                                    player.setAlive(false);
+                                }
+                                break;
+                        }
+                    } while (monster.getHp() > 0 && player.isAlive());
+                } else {
+                    System.out.println("Another step");
+                }
             }
         }
         System.out.println(player.getName() + " is dead");
