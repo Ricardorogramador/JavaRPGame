@@ -7,6 +7,8 @@ public class BattleLogic {
     HitMissChancePlayer hitPlayer = new HitMissChancePlayer();
     HitMissChanceMonster hitMonster = new HitMissChanceMonster();
     PlayerCounterAttack counterAttack = new PlayerCounterAttack();
+    HumanCritChance humanCritChance = new HumanCritChance();
+    MonsterCritChance monsterCritChance = new MonsterCritChance();
 
     public void attack(Player player, Monster monster) {
         double playerRawDamage = player.getAttack();
@@ -17,16 +19,31 @@ public class BattleLogic {
         double finalDamageMonster = monsterRawDamage * (1 - damageReductionPlayer);
 
         if (hitPlayer.hitMiss(player)) {
-            double hpMonster = monster.getHp() - Math.round(finalDamagePlayer);
-            System.out.println("Your damage was: " + Math.round(finalDamagePlayer));
-            monster.setHp(hpMonster);
-            System.out.println("Total " + monster.getName() + " HP: " + monster.getHp());
+            if (humanCritChance.critChance(player)){
+                double critDamage = Math.round(finalDamagePlayer * 1.5);
+                double hpMonsterCrit = monster.getHp() - critDamage;
+                System.out.println("Your damage was: " + critDamage);
+                monster.setHp(hpMonsterCrit);
+            } else {
+                double hpMonster = monster.getHp() - Math.round(finalDamagePlayer);
+                System.out.println("Your damage was: " + Math.round(finalDamagePlayer));
+                monster.setHp(hpMonster);
+                System.out.println("Total " + monster.getName() + " HP: " + monster.getHp());
+            }
+
         }
         if (hitMonster.hitMissMonster(monster)) {
-            double hpPlayer = player.getHp() - Math.round(finalDamageMonster);
-            System.out.println("The enemy damage was: " + Math.round(finalDamageMonster));
-            player.setHp(hpPlayer);
-            System.out.println("Total " + player.getName() + " HP: " + player.getHp());
+            if (monsterCritChance.critChance(monster)){
+                double critDamage = Math.round(finalDamageMonster * 1.5);
+                double hpPlayerCrit = player.getHp() - critDamage;
+                System.out.println(monster.getName() + " Damage was: " + critDamage);
+                player.setHp(hpPlayerCrit);
+            } else {
+                double hpPlayer = player.getHp() - Math.round(finalDamageMonster);
+                System.out.println("The enemy damage was: " + Math.round(finalDamageMonster));
+                player.setHp(hpPlayer);
+                System.out.println("Total " + player.getName() + " HP: " + player.getHp());
+            }
         }
     }
 
