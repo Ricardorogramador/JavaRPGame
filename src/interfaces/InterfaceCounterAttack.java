@@ -2,6 +2,6 @@ package interfaces;
 
 import model.Player;
 
-public interface InterfaceCunterAttack {
+public interface InterfaceCounterAttack {
     boolean counterAttack(Player player);
 }

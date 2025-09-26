@@ -1,12 +1,12 @@
 package service;
 
-import interfaces.InterfaceCunterAttack;
+import interfaces.InterfaceCounterAttack;
 import model.Player;
 import model.Race;
 
 import java.util.Random;
 
-public class PlayerCounterAttack implements InterfaceCunterAttack {
+public class PlayerCounterAttack implements InterfaceCounterAttack {
     @Override
     public boolean counterAttack(Player player) {
         if (player.getRace() == Race.HUMAN){
