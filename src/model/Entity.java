@@ -3,6 +3,8 @@ package model;
 public abstract class Entity {
     private String name;
     private double hp;
+    private double mana;
+    private double maximumMana;
     private double defense;
     private double attack;
     private int strength;
@@ -11,6 +13,19 @@ public abstract class Entity {
     private int lucky;
 
     public Entity() {
+    }
+
+    public Entity(String name, double hp, double mana, double maximumMana, double defense, double attack, int strength, int intelligence, int wisdom, int lucky) {
+        this.name = name;
+        this.hp = hp;
+        this.mana = mana;
+        this.maximumMana = maximumMana;
+        this.defense = defense;
+        this.attack = attack;
+        this.strength = strength;
+        this.intelligence = intelligence;
+        this.wisdom = wisdom;
+        this.lucky = lucky;
     }
 
     public Entity(String name, double hp, double defense, double attack, int strength, int intelligence, int wisdom, int lucky) {
@@ -22,6 +37,22 @@ public abstract class Entity {
         this.intelligence = intelligence;
         this.wisdom = wisdom;
         this.lucky = lucky;
+    }
+
+    public double getMana() {
+        return mana;
+    }
+
+    public void setMana(double mana) {
+        this.mana = mana;
+    }
+
+    public double getMaximumMana() {
+        return maximumMana;
+    }
+
+    public void setMaximumMana(double maximumMana) {
+        this.maximumMana = maximumMana;
     }
 
     public String getName() {

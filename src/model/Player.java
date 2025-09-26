@@ -12,8 +12,8 @@ public class Player extends Entity {
     public Player() {
     }
 
-    public Player(String name, double hp, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_player, double xp, int levelPlayer, double maximumXP, boolean alive, double maximumHP, Race race) {
-        super(name, hp, defense, attack, strength, intelligence, wisdom, lucky);
+    public Player(String name, double hp, double mana, double maximumMana, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_player, double xp, int levelPlayer, double maximumXP, boolean alive, double maximumHP, Race race) {
+        super(name, hp, mana, maximumMana, defense, attack, strength, intelligence, wisdom, lucky);
         this.id_player = id_player;
         this.xp = xp;
         this.levelPlayer = levelPlayer;
@@ -23,8 +23,8 @@ public class Player extends Entity {
         this.race = race;
     }
 
-    public Player(String name, double hp, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_player, boolean alive) {
-        super(name, hp, defense, attack, strength, intelligence, wisdom, lucky);
+    public Player(String name, double hp,  double mana, double maximumMana ,double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_player, boolean alive) {
+        super(name, hp, mana, maximumMana, defense, attack, strength, intelligence, wisdom, lucky);
         this.id_player = id_player;
         this.alive = alive;
     }

@@ -8,6 +8,13 @@ public class Monster extends Entity {
     public Monster() {
     }
 
+    public Monster(String name, double hp, double mana, double maximumMana, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_monster, double giveXP, int levelMonster) {
+        super(name, hp, mana, maximumMana, defense, attack, strength, intelligence, wisdom, lucky);
+        this.id_monster = id_monster;
+        this.giveXP = giveXP;
+        this.levelMonster = levelMonster;
+    }
+
     public Monster(String name, double hp, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_monster, double giveXP, int levelMonster) {
         super(name, hp, defense, attack, strength, intelligence, wisdom, lucky);
         this.id_monster = id_monster;

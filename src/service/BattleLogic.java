@@ -37,9 +37,10 @@ public class BattleLogic {
         System.out.println("The enemy attack you");
         double finalDamageMOnster = monsterRawDamage * (1 - defenseUP);
         if (counterAttack.counterAttack(player)) {
-            double counter = finalDamageMOnster / 2;
+            double counter = Math.round(finalDamageMOnster / 2);
             System.out.println("Counter damage was: " + counter);
-            monster.setHp(counter);
+            double hpCounter = monster.getHp() - counter;
+            monster.setHp(hpCounter);
             System.out.println("Total " + monster.getName() + " HP: " + monster.getHp());
         } else {
             System.out.println("Total damage: " + Math.round(finalDamageMOnster));
