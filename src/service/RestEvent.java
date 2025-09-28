@@ -6,6 +6,11 @@ import java.util.Random;
 import java.util.Scanner;
 import interfaces.*;
 public class RestEvent implements EventsInterface {
+    private final PotionLogic potionLogic;
+
+    public RestEvent(PotionLogic potionLogic) {
+        this.potionLogic = potionLogic;
+    }
 
     @Override
     public void event(Player player) {
@@ -22,6 +27,7 @@ public class RestEvent implements EventsInterface {
             if (option == 1){
                 System.out.println("You sit in the bench");
                 System.out.println("You started to feel relaxed");
+                potionLogic.updatePotions(player);
                 double hpRestored = 50 + player.getHp();
                 if (hpRestored >= player.getMaximumHP()){
                     player.setHp(player.getMaximumHP());

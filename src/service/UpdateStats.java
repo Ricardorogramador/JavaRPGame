@@ -5,7 +5,7 @@ import model.Race;
 
 public class UpdateStats {
     public void statsUpdate(Player player){
-        if (player.getRace() == Race.HUMAN){
+        if (player.getRace() == Race.Human){
             double hp;
             hp = 100 + (player.getStrength() * 5);
             player.setMaximumHP(hp);

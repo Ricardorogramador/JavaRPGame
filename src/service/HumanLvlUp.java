@@ -9,21 +9,22 @@ import java.util.Scanner;
 public class HumanLvlUp implements LevelUpStrategy {
     int counter = 2;
     Scanner enter = new Scanner(System.in);
-
+    UpdateStats updateStats = new UpdateStats();
     public void levelUp(Player player, Monster monster) {
         double xpToLvlUp = player.getMaximumXP();
-        double xpCalculation = (player.getWisdom() * 1.2) + monster.getGiveXP() + player.getXp();
+        double xpCalculation = Math.round(player.getWisdom() * 1.2) + monster.getGiveXP() + player.getXp();
         while (xpCalculation >= xpToLvlUp){
             int lvlUp = player.getLevelPlayer() + 1;
             System.out.println("You level up: " + lvlUp);
             StatsDistributor.distributeStats(player, counter, enter);
+            updateStats.statsUpdate(player);
             player.setLevelPlayer(lvlUp);
             xpCalculation -= xpToLvlUp;
             //TO ADJUST
             double maximumXP = player.getMaximumXP() * 1.3;
             player.setMaximumXP(maximumXP);
             player.setHp(player.getMaximumHP());
-            player.setXp(0);
+            player.setXp(xpCalculation);
         }
         player.setXp(xpCalculation);
         System.out.println("XP gained: " + xpCalculation);

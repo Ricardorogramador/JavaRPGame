@@ -24,6 +24,7 @@ public class BattleLogic {
                 double hpMonsterCrit = monster.getHp() - critDamage;
                 System.out.println("Your damage was: " + critDamage);
                 monster.setHp(hpMonsterCrit);
+                System.out.println("Total " + monster.getName() + " HP: " + monster.getHp());
             } else {
                 double hpMonster = monster.getHp() - Math.round(finalDamagePlayer);
                 System.out.println("Your damage was: " + Math.round(finalDamagePlayer));
@@ -38,6 +39,7 @@ public class BattleLogic {
                 double hpPlayerCrit = player.getHp() - critDamage;
                 System.out.println(monster.getName() + " Damage was: " + critDamage);
                 player.setHp(hpPlayerCrit);
+                System.out.println("Total " + player.getName() + " HP: " + player.getHp());
             } else {
                 double hpPlayer = player.getHp() - Math.round(finalDamageMonster);
                 System.out.println("The enemy damage was: " + Math.round(finalDamageMonster));

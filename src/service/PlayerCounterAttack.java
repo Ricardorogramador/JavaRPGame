@@ -9,7 +9,7 @@ import java.util.Random;
 public class PlayerCounterAttack implements InterfaceCounterAttack {
     @Override
     public boolean counterAttack(Player player) {
-        if (player.getRace() == Race.HUMAN){
+        if (player.getRace() == Race.Human){
             Random random = new Random();
             int chance = random.nextInt(100);
             if (chance < 20){

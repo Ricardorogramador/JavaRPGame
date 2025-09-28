@@ -16,7 +16,7 @@ import model.Player;
             int option = input.nextInt();
             switch (option){
                 case 1:
-                    player.setRace(Race.HUMAN);
+                    player.setRace(Race.Human);
                     break;
             }
             System.out.println("Introduce your name");

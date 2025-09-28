@@ -1,6 +1,8 @@
 package model;
 
 public enum Race {
-    HUMAN,
-    ELF
+    Human,
+    Elf,
+    Dwarf,
+    DarkMister
 }

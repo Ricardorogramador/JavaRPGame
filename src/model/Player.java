@@ -2,6 +2,8 @@ package model;
 
 public class Player extends Entity {
     private String id_player;
+    private int healthPotion = 3;
+    private int manaPotion = 3;
     private double xp = 0;
     private int levelPlayer = 1;
     private double maximumXP = 100;
@@ -12,9 +14,11 @@ public class Player extends Entity {
     public Player() {
     }
 
-    public Player(String name, double hp, double mana, double maximumMana, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_player, double xp, int levelPlayer, double maximumXP, boolean alive, double maximumHP, Race race) {
+    public Player(String name, double hp, double mana, double maximumMana, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_player, int healthPotion, int manaPotion, double xp, int levelPlayer, double maximumXP, boolean alive, double maximumHP, Race race) {
         super(name, hp, mana, maximumMana, defense, attack, strength, intelligence, wisdom, lucky);
         this.id_player = id_player;
+        this.healthPotion = healthPotion;
+        this.manaPotion = manaPotion;
         this.xp = xp;
         this.levelPlayer = levelPlayer;
         this.maximumXP = maximumXP;
@@ -23,10 +27,26 @@ public class Player extends Entity {
         this.race = race;
     }
 
-    public Player(String name, double hp,  double mana, double maximumMana ,double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_player, boolean alive) {
+    public Player(String name, double hp, double mana, double maximumMana , double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_player, boolean alive) {
         super(name, hp, mana, maximumMana, defense, attack, strength, intelligence, wisdom, lucky);
         this.id_player = id_player;
         this.alive = alive;
+    }
+
+    public int getManaPotion() {
+        return manaPotion;
+    }
+
+    public void setManaPotion(int manaPotion) {
+        this.manaPotion = manaPotion;
+    }
+
+    public int getHealthPotion() {
+        return healthPotion;
+    }
+
+    public void setHealthPotion(int healthPotion) {
+        this.healthPotion = healthPotion;
     }
 
     public Race getRace() {
