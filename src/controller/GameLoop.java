@@ -24,7 +24,6 @@ public class GameLoop {
     int option;
     int step = 0;
     Scanner enter = new Scanner(System.in);
-
     public void gameLoop() {
         while (player.isAlive()) {
             System.out.println("Press ENTER to do a step.");

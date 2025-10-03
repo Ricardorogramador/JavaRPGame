@@ -16,10 +16,8 @@ import model.Player;
             System.out.println("1. Human");
             System.out.println("More races in the future");
             int option = input.nextInt();
-            switch (option){
-                case 1:
-                    player.setRace(Race.Human);
-                    break;
+            if (option == 1) {
+                player.setRace(Race.Human);
             }
             System.out.println("Introduce your name");
             String name = input.next();
