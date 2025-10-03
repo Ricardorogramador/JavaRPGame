@@ -1,32 +1,32 @@
 package model;
 
 public class Monster extends Entity {
-    private String id_monster;
+    private int id_monster;
     private double giveXP;
     private int levelMonster;
 
     public Monster() {
     }
 
-    public Monster(String name, double hp, double mana, double maximumMana, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_monster, double giveXP, int levelMonster) {
+    public Monster(String name, double hp, double mana, double maximumMana, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, int id_monster, double giveXP, int levelMonster) {
         super(name, hp, mana, maximumMana, defense, attack, strength, intelligence, wisdom, lucky);
         this.id_monster = id_monster;
         this.giveXP = giveXP;
         this.levelMonster = levelMonster;
     }
 
-    public Monster(String name, double hp, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_monster, double giveXP, int levelMonster) {
+    public Monster(String name, double hp, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, int id_monster, double giveXP, int levelMonster) {
         super(name, hp, defense, attack, strength, intelligence, wisdom, lucky);
         this.id_monster = id_monster;
         this.giveXP = giveXP;
         this.levelMonster = levelMonster;
     }
 
-    public String getId_monster() {
+    public int getId_monster() {
         return id_monster;
     }
 
-    public void setId_monster(String id_monster) {
+    public void setId_monster(int id_monster) {
         this.id_monster = id_monster;
     }
 
