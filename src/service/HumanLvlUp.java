@@ -1,5 +1,6 @@
 package service;
 
+import DBConnection.PlayerDAO;
 import model.Monster;
 import model.Player;
 import interfaces.*;
@@ -7,6 +8,7 @@ import interfaces.*;
 import java.util.Scanner;
 
 public class HumanLvlUp implements LevelUpStrategy {
+    PlayerDAO playerDAO = new PlayerDAO();
     int counter = 2;
     Scanner enter = new Scanner(System.in);
     UpdateStats updateStats = new UpdateStats();
@@ -29,5 +31,6 @@ public class HumanLvlUp implements LevelUpStrategy {
         player.setXp(xpCalculation);
         System.out.println("XP gained: " + xpCalculation);
         System.out.println("Your xp -> " + player.getXp() + "/" + player.getMaximumXP() + " <- XP needed to lvl up");
+        playerDAO.updatePlayer(player);
     }
 }

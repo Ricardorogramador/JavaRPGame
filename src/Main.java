@@ -1,4 +1,3 @@
-import DBConnection.PlayerDAO;
 import controller.*;
 import service.*;
 import model.*;
@@ -8,14 +7,10 @@ import interfaces.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Player player = new Player();
-        PlayerDAO playerDAO = new PlayerDAO();
-        //DataBase
-        playerDAO.createPlayer(player);
+//        Player player = new Player();
         //model.Player creation
-        InitializePlayer creator = new InitializePlayer();
-        creator.createPlayer(player);
-        creator.initializePlayer(player);
+        PlayerCreation playerCreation = new PlayerCreation();
+        Player player = playerCreation.creationPlayer();
         //Controller.GameLoop start
         GameLoop gameLoop = new GameLoop(player);
         gameLoop.gameLoop();

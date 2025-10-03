@@ -1,7 +1,7 @@
 package model;
 
 public class Player extends Entity {
-    private String id_player;
+    private int id;
     private int healthPotion = 3;
     private int manaPotion = 3;
     private double xp = 0;
@@ -14,9 +14,9 @@ public class Player extends Entity {
     public Player() {
     }
 
-    public Player(String name, double hp, double mana, double maximumMana, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_player, int healthPotion, int manaPotion, double xp, int levelPlayer, double maximumXP, boolean alive, double maximumHP, Race race) {
+    public Player(String name, double hp, double mana, double maximumMana, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, int id, int healthPotion, int manaPotion, double xp, int levelPlayer, double maximumXP, boolean alive, double maximumHP, Race race) {
         super(name, hp, mana, maximumMana, defense, attack, strength, intelligence, wisdom, lucky);
-        this.id_player = id_player;
+        this.id = id;
         this.healthPotion = healthPotion;
         this.manaPotion = manaPotion;
         this.xp = xp;
@@ -27,9 +27,9 @@ public class Player extends Entity {
         this.race = race;
     }
 
-    public Player(String name, double hp, double mana, double maximumMana , double defense, double attack, int strength, int intelligence, int wisdom, int lucky, String id_player, boolean alive) {
+    public Player(String name, double hp, double mana, double maximumMana , double defense, double attack, int strength, int intelligence, int wisdom, int lucky, int id, boolean alive) {
         super(name, hp, mana, maximumMana, defense, attack, strength, intelligence, wisdom, lucky);
-        this.id_player = id_player;
+        this.id = id;
         this.alive = alive;
     }
 
@@ -57,12 +57,12 @@ public class Player extends Entity {
         this.race = race;
     }
 
-    public String getId_player() {
-        return id_player;
+    public int getId() {
+        return id;
     }
 
-    public void setId_player(String id_player) {
-        this.id_player = id_player;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getXp() {
@@ -105,8 +105,8 @@ public class Player extends Entity {
         this.maximumHP = maximumHP;
     }
 
-    @Override
-    String mostrarInformacion() {
-        return "";
-    }
+//    @Override
+//    String mostrarInformacion() {
+//        return "";
+//    }
 }
