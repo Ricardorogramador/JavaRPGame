@@ -7,7 +7,6 @@ import interfaces.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-//        Player player = new Player();
         //model.Player creation
         PlayerCreation playerCreation = new PlayerCreation();
         Player player = playerCreation.creationPlayer();
