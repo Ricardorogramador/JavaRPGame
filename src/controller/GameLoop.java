@@ -1,5 +1,6 @@
 package controller;
 
+import DBConnection.PlayerDAO;
 import service.*;
 import model.Monster;
 import model.Player;
@@ -13,6 +14,7 @@ public class GameLoop {
         this.player = player;
     }
 
+    PlayerDAO playerDAO = new PlayerDAO();
     Monster monster = null;
     RandomBattleGenerator generator = new RandomBattleGenerator();
     PotionLogic potionLogic = new PotionLogic();
@@ -69,8 +71,6 @@ public class GameLoop {
             }
         }
         System.out.println(player.getName() + " is dead");
-        if (player.getId_player().equals("Ricardo")) {
-            System.out.println("model.Player has been deleted");
-        }
+        playerDAO.deletePlayer(player);
     }
 }

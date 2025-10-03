@@ -129,5 +129,5 @@ public abstract class Entity {
                 ", lucky=" + lucky +
                 '}';
     }
-    abstract String mostrarInformacion();
+//    abstract String mostrarInformacion();
 }

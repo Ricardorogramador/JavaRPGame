@@ -46,8 +46,8 @@ public class Monster extends Entity {
         this.levelMonster = levelMonster;
     }
 
-    @Override
-    String mostrarInformacion() {
-        return "";
-    }
+//    @Override
+//    String mostrarInformacion() {
+//        return "";
+//    }
 }

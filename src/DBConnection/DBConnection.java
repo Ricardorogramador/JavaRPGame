@@ -14,7 +14,7 @@ public class DBConnection {
     public DBConnection(){
         properties = new Properties();
         properties.setProperty("user", "postgres");
-        properties.setProperty("password", "goku123");
+        properties.setProperty("password", System.getProperty("PASSWORD"));
     }
     public Connection getConnection(){
         try{

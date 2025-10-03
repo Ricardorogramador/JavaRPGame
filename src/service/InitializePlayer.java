@@ -1,5 +1,6 @@
 package service;
 
+import DBConnection.PlayerDAO;
 import model.Player;
     import model.Race;
     import interfaces.*;
@@ -8,6 +9,7 @@ import model.Player;
 
     public class InitializePlayer implements InitializePlayerInterface {
         Scanner input = new Scanner(System.in);
+        PlayerDAO playerDAO = new PlayerDAO();
         public void createPlayer(Player player) {
             System.out.println("--Character creation--");
             System.out.println("Select your race");
@@ -23,11 +25,8 @@ import model.Player;
             String name = input.next();
             player.setName(name);
             System.out.println("Now distribute your stats");
-            player.setStrength(1);
-            player.setWisdom(1);
-            player.setLucky(1);
-            player.setIntelligence(1);
             StatsDistributor.distributeStats(player, 10, input);
+            playerDAO.createPlayer(player);
             System.out.println("Good luck in your journey");
         }
 
@@ -42,5 +41,6 @@ import model.Player;
             player.setAttack(attack);
             double defense = 5 + (player.getDefense() * 1.2);
             player.setDefense(defense);
+            playerDAO.updatePlayer(player);
         }
     }
