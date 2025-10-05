@@ -23,7 +23,7 @@ public class HumanLvlUp implements LevelUpStrategy {
             StatsDistributor.distributeStats(player, counter, enter);
             updateStats.statsUpdate(player);
             player.setLevelPlayer(lvlUp);
-            xpCalculationTotal= xpToLvlUp;
+            xpCalculationTotal -= xpToLvlUp;
             //TO ADJUST
             double maximumXP = player.getMaximumXP() * 1.3;
             player.setMaximumXP(maximumXP);

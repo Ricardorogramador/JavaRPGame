@@ -105,7 +105,17 @@ public class Player extends Entity {
         this.maximumHP = maximumHP;
     }
 
-//    @Override
+    @Override
+    public String toString() {
+        return  "Name: " + getName() + "\n" +
+                "ID: " + getId() + "\n" +
+                "Level: " + getLevelPlayer() + "\n" +
+                "HP: " + getHp() + "\n" +
+                "-----------------------------";
+    }
+
+
+    //    @Override
 //    String mostrarInformacion() {
 //        return "";
 //    }
