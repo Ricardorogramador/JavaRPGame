@@ -31,9 +31,9 @@ public class GameLoop {
             enter.nextLine();
             step++;
             double roll = Math.random();
-            if (roll < 0.2) {
+            if (roll <= 0.2) {
                 restEvent.event(player);
-            } else {
+            } else if (roll <= 0.3){
                 monster = generator.randomBattle(player);
                 if (monster != null) {
                     System.out.println("A " + monster.getName() + " has appeared");
