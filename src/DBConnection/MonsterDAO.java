@@ -19,8 +19,8 @@ public class MonsterDAO {
                 Monster monster = new Monster();
                 monster.setId_monster(rs.getInt("id_monster"));
                 monster.setName(rs.getString("name"));
-                monster.setLevelMonster(rs.getInt("levelMonster"));
-                monster.setGiveXP(rs.getDouble("giveXP"));
+                monster.setLevelMonster(rs.getInt("levelmonster"));
+                monster.setGiveXP(rs.getDouble("givexp"));
                 monster.setAttack(rs.getDouble("attack"));
                 monster.setDefense(rs.getDouble("defense"));
                 monster.setHp(rs.getDouble("hp"));
@@ -48,8 +48,8 @@ public class MonsterDAO {
                 Monster monster = new Monster();
                 monster.setId_monster(rs.getInt("id_monster"));
                 monster.setName(rs.getString("name"));
-                monster.setLevelMonster(rs.getInt("levelMonster"));
-                monster.setGiveXP(rs.getDouble("giveXP"));
+                monster.setLevelMonster(rs.getInt("levelmonster"));
+                monster.setGiveXP(rs.getDouble("givexp"));
                 monster.setAttack(rs.getDouble("attack"));
                 monster.setDefense(rs.getDouble("defense"));
                 monster.setHp(rs.getDouble("hp"));
@@ -57,8 +57,8 @@ public class MonsterDAO {
                 monster.setIntelligence(rs.getInt("intelligence"));
                 monster.setWisdom(rs.getInt("wisdom"));
                 monster.setLucky(rs.getInt("lucky"));
-//                monster.setMana(rs.getDouble("mana"));
-//                monster.setMaximumMana(rs.getDouble("maximunmana"));
+                monster.setMana(rs.getDouble("mana"));
+                monster.setMaximumMana(rs.getDouble("maximunmana"));
                 return monster;
             }
         } catch (SQLException e) {
