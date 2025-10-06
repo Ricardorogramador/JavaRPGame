@@ -9,7 +9,7 @@ import java.util.Random;
 public class RandomBattleGenerator {
 
     Random rand = new Random();
-    public Monster randomBattle(Player player) {
+    public Monster randomBattleForest(Player player) {
         MonsterDAO monsterDAO = new MonsterDAO();
         int level = player.getLevelPlayer();
         int chance = rand.nextInt(100) +1;
