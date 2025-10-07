@@ -171,18 +171,6 @@ src/
 
 ---
 
-## Example Usage
-
-```java
-PlayerCreation pc = new PlayerCreation();
-Player player = pc.creationPlayer();
-
-GameLoop game = new GameLoop(player);
-game.area(player);
-```
-
----
-
 ## License
 
 This project is open-source and free to use for learning, studying, or personal exploration.
