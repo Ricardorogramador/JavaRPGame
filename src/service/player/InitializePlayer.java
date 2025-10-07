@@ -31,6 +31,7 @@ import java.util.Scanner;
         @Override
         public void initializePlayer(Player player) {
             player.setAlive(true);
+            player.setGold(50);
             double hp;
             hp = 100 + (player.getStrength() * 5);
             player.setHp(hp);

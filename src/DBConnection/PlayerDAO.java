@@ -73,6 +73,7 @@ public class PlayerDAO {
                 player.setHealthPotion(rs.getInt("healthpotion"));
                 player.setManaPotion(rs.getInt("manapotion"));
                 player.setAlive(rs.getBoolean("alive"));
+                player.setGold(rs.getInt("gold"));
                 return player;
             }
         } catch (SQLException e) {
@@ -87,8 +88,8 @@ public class PlayerDAO {
         String data;
         try{
             String playerSql = "INSERT INTO player (race,name, level, strength, intelligence, wisdom, lucky, attack" +
-                    ", defense, hp, maximumHP, mana, maximunmana, xp, maximumXP, healthpotion, manapotion, alive) " +
-                    " VALUES (?::race,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    ", defense, hp, maximumHP, mana, maximunmana, xp, maximumXP, healthpotion, manapotion, alive, gold) " +
+                    " VALUES (?::race,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement playerPreparedStatement = conn.prepareStatement(playerSql, Statement.RETURN_GENERATED_KEYS);
             playerPreparedStatement.setString(1, player.getRace().name());
             playerPreparedStatement.setString(2, player.getName());
@@ -108,6 +109,7 @@ public class PlayerDAO {
             playerPreparedStatement.setInt(16, player.getHealthPotion());
             playerPreparedStatement.setInt(17, player.getManaPotion());
             playerPreparedStatement.setBoolean(18, player.isAlive());
+            playerPreparedStatement.setInt(19, player.getGold());
             playerPreparedStatement.executeUpdate();
             //Generate key for id.
             ResultSet rs = playerPreparedStatement.getGeneratedKeys();
@@ -133,7 +135,7 @@ public class PlayerDAO {
     public void updatePlayer(Player player){
         String updateSQL = "UPDATE player SET level = ?, strength = ?, intelligence = ?, wisdom = ?," +
                 "lucky = ?, attack = ?, defense = ?, hp = ?, maximumhp = ?, mana = ?, maximunmana = ?," +
-                "xp = ?, maximumxp = ?, healthpotion = ?, manapotion = ?, alive = ? WHERE id_player = ?";
+                "xp = ?, maximumxp = ?, healthpotion = ?, manapotion = ?, alive = ?, gold = ? WHERE id_player = ?";
         try {
             PreparedStatement psUpdate = conn.prepareStatement(updateSQL);
             psUpdate.setInt(1, player.getLevelPlayer());
@@ -152,7 +154,8 @@ public class PlayerDAO {
             psUpdate.setInt(14, player.getHealthPotion());
             psUpdate.setInt(15, player.getManaPotion());
             psUpdate.setBoolean(16, player.isAlive());
-            psUpdate.setInt(17, player.getId());
+            psUpdate.setInt(17, player.getGold());
+            psUpdate.setInt(18, player.getId());
             int rowUpdate = psUpdate.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

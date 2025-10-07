@@ -30,6 +30,7 @@ public class MonsterDAO {
                 monster.setLucky(rs.getInt("lucky"));
                 monster.setMana(rs.getDouble("mana"));
                 monster.setMaximumMana(rs.getDouble("maximunmana"));
+                monster.setGold(rs.getInt("gold"));
                 monsters.add(monster);
             }
         } catch (SQLException e) {
@@ -59,6 +60,7 @@ public class MonsterDAO {
                 monster.setLucky(rs.getInt("lucky"));
                 monster.setMana(rs.getDouble("mana"));
                 monster.setMaximumMana(rs.getDouble("maximunmana"));
+                monster.setGold(rs.getInt("gold"));
                 return monster;
             }
         } catch (SQLException e) {

@@ -2,6 +2,7 @@ package model;
 
 public class Player extends Entity {
     private int id;
+    private int gold;
     private int healthPotion = 3;
     private int manaPotion = 3;
     private double xp = 0;
@@ -14,9 +15,10 @@ public class Player extends Entity {
     public Player() {
     }
 
-    public Player(String name, double hp, double mana, double maximumMana, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, int id, int healthPotion, int manaPotion, double xp, int levelPlayer, double maximumXP, boolean alive, double maximumHP, Race race) {
+    public Player(String name, double hp, double mana, double maximumMana, double defense, double attack, int strength, int intelligence, int wisdom, int lucky, int id, int gold, int healthPotion, int manaPotion, double xp, int levelPlayer, double maximumXP, boolean alive, double maximumHP, Race race) {
         super(name, hp, mana, maximumMana, defense, attack, strength, intelligence, wisdom, lucky);
         this.id = id;
+        this.gold = gold;
         this.healthPotion = healthPotion;
         this.manaPotion = manaPotion;
         this.xp = xp;
@@ -31,6 +33,14 @@ public class Player extends Entity {
         super(name, hp, mana, maximumMana, defense, attack, strength, intelligence, wisdom, lucky);
         this.id = id;
         this.alive = alive;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 
     public int getManaPotion() {
@@ -111,6 +121,7 @@ public class Player extends Entity {
                 "ID: " + getId() + "\n" +
                 "Level: " + getLevelPlayer() + "\n" +
                 "HP: " + getHp() + "\n" +
+                "Gold: " + getGold() + "\n" +
                 "-----------------------------";
     }
 
