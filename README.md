@@ -1,77 +1,152 @@
 # JavaRPGame
 
-**JavaRPGame** is a simple turn-based RPG console game developed as a self-study project to practice and improve my Java skills. The main goal is to learn core Java concepts, experiment with game logic, and eventually integrate a database using JDBC. The game is written in English and is designed primarily for personal learning and exploration.
+**JavaRPGame** is a console-based, turn-based RPG developed as a self-study project to practice and improve Java skills. It features player and monster management, battles, stat progression, and is designed with clean, modular architecture. The game is written in English and intended primarily for learning and experimentation.
 
 ---
 
 ## Purpose
 
-This project was created for my own study and experimentation, covering topics such as:
+This project was created for personal study, covering:
 - Object-oriented programming in Java.
 - Turn-based RPG mechanics and game loop design.
-- Preparation for integrating a relational database using JDBC.
+- Database integration with JDBC and PostgreSQL (planned).
 
 ---
 
 ## Features
 
 - Console-based, turn-based RPG gameplay.
-- Basic mechanics including player and monster entities, random encounters, battles, leveling, and stat management.
-- All core data and logic currently managed within the codebase.
-- Clear package and class structure for organization and maintainability.
-
-**Note:** In the final version, all entities and game data will be managed directly from a PostgreSQL database.
+- Player and monster entities, stat management, random encounters, and leveling.
+- Modular package and class structure for organization and maintainability.
+- All entities and game data currently managed in code (database integration planned).
 
 ---
 
 ## Project Structure
 
-The main packages and important classes are:
-
 ```
-Controller/
-  └── GameLoop.java
-
-Interfaces/
-  ├── EventsInterface.java
-  ├── InitializePlayerInterface.java
-  └── LevelUpStrategy.java
-
-model/
-  ├── Battle.java
-  ├── Entity.java
-  ├── Monster.java
-  ├── Player.java
-  └── Race.java
-
-Service_Logic/
-  ├── BattleLogic.java
-  ├── HumanLvlUp.java
-  ├── InitializePlayer.java
-  ├── RandomBattleGenerator.java
-  ├── RestEvent.java
-  ├── StatsDistributor.java
-  └── UpdateStats.java
-
-Main.java
+src/
+├── controller/
+│   ├── GameLoop.java
+│   └── PlayerCreation.java
+├── DBConnection/
+│   ├── DBConnection.java
+│   ├── MonsterDAO.java
+│   └── PlayerDAO.java
+├── model/
+│   ├── Entity.java
+│   ├── Monster.java
+│   ├── Player.java
+│   ├── Race.java
+│   └── Battle.java
+├── service/
+│   ├── Battle/
+│   │   ├── BattleLogic.java
+│   │   ├── PotionLogic.java
+│   │   └── RandomBattleGenerator.java
+│   ├── combat/
+│   │   ├── DamageCalculator.java
+│   │   ├── DefenseCalculator.java
+│   │   ├── HitMissChanceMonster.java
+│   │   ├── HitMissChancePlayer.java
+│   │   ├── HumanCritChance.java
+│   │   ├── MonsterCritChance.java
+│   │   └── PlayerCounterAttack.java
+│   ├── event/
+│   │   └── RestEvent.java
+│   ├── player/
+│   │   ├── HumanLvlUp.java
+│   │   ├── InitializePlayer.java
+│   │   ├── StatsDistributor.java
+│   │   └── UpdateStats.java
+├── interfaces/
+│   └── [Various game interfaces]
+└── Main.java
 ```
 
 ---
 
-## Planned Technologies
+## Package Overview
 
-- **Java**: Core programming language.
-- **PostgreSQL**: All game data (players, monsters, battles, etc.) will eventually be stored and managed in a PostgreSQL database.
-- **JDBC**: Java Database Connectivity for interacting with the database.
-- **DBeaver Community Edition**: For designing and managing the PostgreSQL database.
+### controller
+- **GameLoop.java**: Manages the main gameplay loop, exploration, and event/battle triggers.
+- **PlayerCreation.java**: Handles creating or selecting player characters.
+
+### DBConnection
+- **DBConnection.java**: Database connection management (PostgreSQL).
+- **MonsterDAO.java** / **PlayerDAO.java**: CRUD operations for Monster and Player entities.
+
+### model
+- **Entity.java**: Abstract base class for all entities (Player, Monster).
+- **Player.java**: Player character, with stats, XP, level, and potions.
+- **Monster.java**: Enemy characters, XP rewards, and level.
+- **Race.java**: Enum for character races.
+- **Battle.java**: Stores battle metadata (participants, result, XP).
+
+### service
+
+#### Battle
+- **BattleLogic.java**: Handles turns, attacking, and defending.
+- **PotionLogic.java**: Manages potion usage and restoration.
+- **RandomBattleGenerator.java**: Generates random encounters.
+
+#### combat
+- **DamageCalculator.java** / **DefenseCalculator.java**: Damage and defense calculations.
+- **HitMissChanceMonster.java** / **HitMissChancePlayer.java**: Hit/miss probabilities.
+- **HumanCritChance.java** / **MonsterCritChance.java**: Critical hit calculations.
+- **PlayerCounterAttack.java**: Counterattack logic.
+
+#### event
+- **RestEvent.java**: Rest and recovery events during exploration.
+
+#### player
+- **HumanLvlUp.java**: Leveling up and XP management for humans.
+- **InitializePlayer.java**: Player creation and stat initialization.
+- **StatsDistributor.java**: Stat distribution interface.
+- **UpdateStats.java**: Updates player stats.
+
+### interfaces
+- Game logic interfaces for extensibility (e.g., hit/miss, level up, initialization).
+
+---
+
+## Game Flow
+
+1. **Player Creation / Selection**
+    - New players are created or existing ones loaded from the database.
+    - Players are initialized with race, stats, and status.
+
+2. **Exploration**
+    - Players choose an area and number of steps.
+    - Each step may trigger a battle, rest event, or neutral event.
+
+3. **Battle System**
+    - Turn-based battles: attack, defend, use potions.
+    - Outcomes depend on stats, random chance, and critical hits.
+    - XP and level progression, manual stat distribution.
+
+4. **Persistence**
+    - Player and monster states managed in PostgreSQL (planned).
+
+---
+
+## Technologies
+
+- **Java**: Core language.
+- **PostgreSQL**: Database for storing game entities and battles (planned).
+- **JDBC**: Java Database Connectivity.
+- **DBeaver Community Edition**: Database management.
 
 ---
 
 ## Upcoming Features
 
-- Migration of all game data to PostgreSQL via JDBC.
-- More advanced battle logic and entity management.
-- Improved code structure for better maintainability and extensibility.
+- **Main Hub**: A central area for players, offering access to a shop, quest board for accepting missions, and an inn for resting and recovery. Players can also leave the hub to explore different zones.
+- **Magic Skills**: New magical abilities for players, increasing strategic combat options and character customization.
+- **Gold System Update**: The model will be updated to support gold acquisition, storage, and spending.
+- **Shop**: In-game store to buy/sell items, equipment, and potions using gold.
+- **Inn**: Resting place within the hub to recover health and mana.
+- **Quest System**: Ability to accept, track, and complete missions for rewards and progression.
 
 ---
 
@@ -92,9 +167,19 @@ Main.java
 3. Compile and run `Main.java`.
 4. Play the game in your console!
 
-*All game data is currently managed in code. Database integration will be added in the future.*
+*All game data currently managed in code. Database integration will be added soon.*
 
 ---
+
+## Example Usage
+
+```java
+PlayerCreation pc = new PlayerCreation();
+Player player = pc.creationPlayer();
+
+GameLoop game = new GameLoop(player);
+game.area(player);
+```
 
 ---
 
