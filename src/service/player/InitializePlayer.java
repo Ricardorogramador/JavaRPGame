@@ -1,11 +1,11 @@
-package service;
+package service.player;
 
 import DBConnection.PlayerDAO;
 import model.Player;
     import model.Race;
     import interfaces.*;
 
-    import java.util.Scanner;
+import java.util.Scanner;
 
     public class InitializePlayer implements InitializePlayerInterface {
         Scanner input = new Scanner(System.in);

@@ -1,4 +1,4 @@
-package service;
+package service.combat;
 
 public class DamageCalculator {
     public static double calculateDamage(double attackerAttack, double defenderDefense){

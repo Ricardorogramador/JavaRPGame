@@ -1,4 +1,4 @@
-package service;
+package service.Battle;
 
 import DBConnection.MonsterDAO;
 import model.Monster;

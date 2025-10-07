@@ -1,7 +1,8 @@
-package service;
+package service.Battle;
 
 import model.Monster;
 import model.Player;
+import service.combat.*;
 
 public class BattleLogic {
     HitMissChancePlayer hitPlayer = new HitMissChancePlayer();

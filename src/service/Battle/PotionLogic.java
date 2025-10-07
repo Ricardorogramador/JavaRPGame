@@ -1,4 +1,4 @@
-package service;
+package service.Battle;
 
 import model.Player;
 

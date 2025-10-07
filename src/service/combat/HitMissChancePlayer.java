@@ -1,4 +1,4 @@
-package service;
+package service.combat;
 
 import interfaces.InterfaceHitMissPlayer;
 import model.*;

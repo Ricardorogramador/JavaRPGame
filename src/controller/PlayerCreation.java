@@ -2,7 +2,7 @@ package controller;
 
 import DBConnection.PlayerDAO;
 import model.Player;
-import service.InitializePlayer;
+import service.player.InitializePlayer;
 
 import java.util.List;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package service;
+package service.player;
 
 import model.Player;
 

@@ -1,10 +1,12 @@
-package service;
+package service.event;
 
 import model.Player;
 
 import java.util.Random;
 import java.util.Scanner;
 import interfaces.*;
+import service.Battle.PotionLogic;
+
 public class RestEvent implements EventsInterface {
     private final PotionLogic potionLogic;
 

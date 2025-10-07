@@ -1,4 +1,4 @@
-package service;
+package service.combat;
 
 public class DefenseCalculator {
     public static double defenseCalculator(double attackerAttack, double defenderDefense){

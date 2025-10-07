@@ -1,4 +1,4 @@
-package service;
+package service.combat;
 
 import interfaces.InterfaceHitMissMonster;
 import model.Monster;
