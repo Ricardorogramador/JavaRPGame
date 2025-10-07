@@ -1,4 +1,4 @@
-package service.Battle;
+package service.battle;
 
 import DBConnection.MonsterDAO;
 import model.Monster;
@@ -11,7 +11,6 @@ public class RandomBattleGenerator {
     Random rand = new Random();
     public Monster randomBattleForest(Player player) {
         MonsterDAO monsterDAO = new MonsterDAO();
-        int level = player.getLevelPlayer();
         int chance = rand.nextInt(100) +1;
         Monster monster = null;
         if (player.getLevelPlayer() < 6){

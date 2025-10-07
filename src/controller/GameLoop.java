@@ -3,9 +3,9 @@ package controller;
 import DBConnection.PlayerDAO;
 import model.Monster;
 import model.Player;
-import service.Battle.BattleLogic;
-import service.Battle.PotionLogic;
-import service.Battle.RandomBattleGenerator;
+import service.battle.BattleLogic;
+import service.battle.PotionLogic;
+import service.battle.RandomBattleGenerator;
 import service.event.RestEvent;
 import service.player.HumanLvlUp;
 
