@@ -61,27 +61,30 @@ public class Hub {
                     break;
                 case 4:
                     //TODO: Here goes adventures logic
-                    System.out.println("You decide to go for adventures");
+                    System.out.println("You decide to go for adventures!");
                     System.out.println("Where you want to go?");
                     System.out.println("1. Forest");
                     System.out.println("2. Cave");
                     option = input.nextInt();
                     switch (option){
                         case 1:
+                            System.out.println("You head toward the Forest");
                             adventure.forestArea(player);
                             break;
                         case 2:
+                            System.out.println("You descend into the dark caves");
                             adventure.caveArea(player);
                             break;
                         default:
-                            System.out.println("You didn't know where to go so you just walk until find a adventure");
+                            System.out.println("You wander aimlessly, looking for adventure...");
                             int chance = random.nextInt(100);
                             if (chance <=60){
-                                System.out.println("You found the forest");
+                                System.out.println("You stumble upon the Forest!");
                                 adventure.forestArea(player);
                             } else {
+                                System.out.println("You find yourself near the entrance of the Caves!");
                                 adventure.caveArea(player);
-                                System.out.println("You found the caves");
+
                             }
                     }
                     break;
