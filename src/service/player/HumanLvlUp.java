@@ -18,6 +18,7 @@ public class HumanLvlUp implements LevelUpStrategy {
         double xpGain = Math.round(player.getWisdom() * 1.2) + monster.getGiveXP();
         double xpTotal = player.getXp() + xpGain;
         double xpNeeded = player.getMaximumXP();
+        player.setXp(xpTotal);
 
         double multiplier = getXpMultiplier(player.getLevelPlayer());
 
@@ -26,6 +27,8 @@ public class HumanLvlUp implements LevelUpStrategy {
             xpTotal -= xpNeeded;
             xpNeeded = player.getMaximumXP();
         }
+        System.out.println("XP gained: " + xpGain);
+        System.out.println("Your xp -> " + player.getXp() + "/" + player.getMaximumXP() + " <- XP needed to lvl up");
     }
 
     private double getXpMultiplier(int level) {

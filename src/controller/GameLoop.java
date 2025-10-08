@@ -3,9 +3,9 @@ package controller;
 import DBConnection.PlayerDAO;
 import model.Monster;
 import model.Player;
+import interfaces.AreaInterface; // tu interfaz de áreas
 import service.battle.BattleLogic;
 import service.battle.PotionLogic;
-import service.battle.RandomBattleGenerator;
 import service.event.RestEvent;
 import service.player.HumanLvlUp;
 
@@ -13,29 +13,28 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GameLoop {
-    Player player;
 
-    public GameLoop(Player player) {
+    private final Player player;
+    private final AreaInterface area;
+
+    private final Random random = new Random();
+    private final PlayerDAO playerDAO = new PlayerDAO();
+    private final PotionLogic potionLogic = new PotionLogic();
+    private final RestEvent restEvent = new RestEvent(potionLogic);
+    private final Scanner scanner = new Scanner(System.in);
+    private final BattleLogic battleLogic = new BattleLogic();
+    private final HumanLvlUp humanLvlUp = new HumanLvlUp();
+
+    private int totalSteps = 0;
+    private int stepsTaken = 0;
+
+    public GameLoop(Player player, AreaInterface area) {
         this.player = player;
+        this.area = area;
     }
 
-    Random random = new Random();
-    int totalSteps = 0;
-    int stepsTaken = 0;
-    Monster monster = null;
-    PlayerDAO playerDAO = new PlayerDAO();
-    PotionLogic potionLogic = new PotionLogic();
-    RestEvent restEvent = new RestEvent(potionLogic);
-    Scanner scanner = new Scanner(System.in);
-    BattleLogic logic = new BattleLogic();
-    HumanLvlUp humanLvlUp = new HumanLvlUp();
-    RandomBattleGenerator randomBattleGenerator = new RandomBattleGenerator();
-
-    public void area(Player player) throws InterruptedException {
-        System.out.println("Select the area you want to explore:");
-        System.out.println("1. Forest");
-        int option = scanner.nextInt();
-
+    public void explore() throws InterruptedException {
+        System.out.println("Exploring: " + area.getName());
         System.out.println("How many steps do you want to take?");
         totalSteps = scanner.nextInt();
 
@@ -47,21 +46,15 @@ public class GameLoop {
 
             int chance = random.nextInt(100) + 1; // 1–100
 
-            if (option == 1) {
-                if (chance <= 40) { // 60% batalla
-                    monster = randomBattleGenerator.randomBattleForest(player);
-                    if (monster != null) {
-                        startBattle(player, monster);
-                    } else {
-                        System.out.println("You sense danger... but nothing appears.");
-                    }
+            Monster monster = area.generatorMonster(player, chance);
 
-                } else if (chance <= 70) { // 20% descanso
-                    restEvent.event(player);
-
-                } else { // 20% paso vacío
-                    System.out.println("The path is quiet... you move on.");
-                }
+            if (monster != null) {
+                System.out.println("A " + monster.getName() + " appears!");
+                startBattle(player, monster);
+            } else if (area.isRestEvent(chance)) {
+                restEvent.event(player);
+            } else {
+                System.out.println("The path is quiet... you move on.");
             }
         }
 
@@ -69,38 +62,35 @@ public class GameLoop {
             System.out.println(player.getName() + " has fallen in battle...");
             playerDAO.deletePlayer(player);
         } else {
-            System.out.println("\nYou've finished exploring this area after " + stepsTaken + " steps.");
+            System.out.println("\nYou've finished exploring the " + area.getName() +
+                    " after " + stepsTaken + " steps.");
         }
     }
 
     private void startBattle(Player player, Monster monster) {
-        System.out.println("A " + monster.getName() + " appears!");
-
         int option;
+
         do {
             System.out.println("\nThe battle begins!");
             System.out.println("1. Attack");
             System.out.println("2. Defend");
             System.out.println("3. Use health potion");
             option = scanner.nextInt();
-
+            playerDAO.updatePlayer(player);
             switch (option) {
                 case 1:
-                    logic.attack(player, monster);
+                    battleLogic.attack(player, monster);
                     if (monster.getHp() <= 0) {
                         System.out.println(monster.getName() + " has been defeated!");
                         humanLvlUp.levelUp(player, monster);
                     }
                     break;
-
                 case 2:
-                    logic.defend(player, monster);
+                    battleLogic.defend(player, monster);
                     break;
-
                 case 3:
                     potionLogic.healthPotion(player);
                     break;
-
                 default:
                     System.out.println("Invalid option!");
                     break;

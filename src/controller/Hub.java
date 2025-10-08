@@ -1,14 +1,18 @@
 package controller;
 
 import model.Player;
+import service.hub.AdventureService;
 import service.hub.InnService;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Hub {
 
-    public void hub(Player player){
+    public void hub(Player player) throws InterruptedException {
         InnService innService = new InnService();
+        Random random = new Random();
+        AdventureService adventure = new AdventureService();
         System.out.println("Welcome to the Hub.");
         Scanner input = new Scanner(System.in);
         System.out.println("Here you can accept questlines, buy skills and rest");
@@ -57,6 +61,29 @@ public class Hub {
                     break;
                 case 4:
                     //TODO: Here goes adventures logic
+                    System.out.println("You decide to go for adventures");
+                    System.out.println("Where you want to go?");
+                    System.out.println("1. Forest");
+                    System.out.println("2. Cave");
+                    option = input.nextInt();
+                    switch (option){
+                        case 1:
+                            adventure.forestArea(player);
+                            break;
+                        case 2:
+                            adventure.caveArea(player);
+                            break;
+                        default:
+                            System.out.println("You didn't know where to go so you just walk until find a adventure");
+                            int chance = random.nextInt(100);
+                            if (chance <=60){
+                                System.out.println("You found the forest");
+                                adventure.forestArea(player);
+                            } else {
+                                adventure.caveArea(player);
+                                System.out.println("You found the caves");
+                            }
+                    }
                     break;
                 case 5:
                     System.out.println("Leaving the Hub");

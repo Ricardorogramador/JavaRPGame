@@ -1,5 +1,9 @@
 import controller.*;
-import service.*;
+import service.player.*;
+import service.hub.*;
+import service.battle.*;
+import service.event.*;
+import service.combat.*;
 import model.*;
 import interfaces.*;
 
@@ -22,9 +26,8 @@ public class Main {
                     //model.Player creation
                     PlayerCreation playerCreation = new PlayerCreation();
                     Player player = playerCreation.creationPlayer();
-                    //Controller.GameLoop start
-                    GameLoop gameLoop = new GameLoop(player);
-                    gameLoop.area(player);
+                    Hub hub = new Hub();
+                    hub.hub(player);
                     break;
                 case 2:
                     System.out.println("GoodBye");
