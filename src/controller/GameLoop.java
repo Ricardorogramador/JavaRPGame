@@ -3,9 +3,11 @@ package controller;
 import DBConnection.PlayerDAO;
 import model.Monster;
 import model.Player;
-import interfaces.AreaInterface; // tu interfaz de áreas
+import interfaces.AreaInterface;
 import service.battle.BattleLogic;
+import service.battle.MonsterTurn;
 import service.battle.PotionLogic;
+import service.battle.SkillsLogic;
 import service.event.RestEvent;
 import service.player.HumanLvlUp;
 
@@ -24,6 +26,8 @@ public class GameLoop {
     private final Scanner scanner = new Scanner(System.in);
     private final BattleLogic battleLogic = new BattleLogic();
     private final HumanLvlUp humanLvlUp = new HumanLvlUp();
+    private final SkillsLogic skillsLogic = new SkillsLogic();
+    private final MonsterTurn monsterTurn = new MonsterTurn();
 
     private int totalSteps = 0;
     private int stepsTaken = 0;
@@ -74,12 +78,14 @@ public class GameLoop {
             System.out.println("\nThe battle begins!");
             System.out.println("1. Attack");
             System.out.println("2. Defend");
-            System.out.println("3. Use health potion");
+            System.out.println("3. Skills");
+            System.out.println("4. Use health potion");
             option = scanner.nextInt();
             playerDAO.updatePlayer(player);
             switch (option) {
                 case 1:
                     battleLogic.attack(player, monster);
+                    monsterTurn.monsterAttack(player,monster);
                     if (monster.getHp() <= 0) {
                         System.out.println(monster.getName() + " has been defeated!");
                         humanLvlUp.levelUp(player, monster);
@@ -87,8 +93,20 @@ public class GameLoop {
                     break;
                 case 2:
                     battleLogic.defend(player, monster);
+                    if (monster.getHp() <= 0) {
+                        System.out.println(monster.getName() + " has been defeated!");
+                        humanLvlUp.levelUp(player, monster);
+                    }
                     break;
                 case 3:
+                    skillsLogic.showSKills(player,monster);
+                    monsterTurn.monsterAttack(player,monster);
+                    if (monster.getHp() <= 0) {
+                        System.out.println(monster.getName() + " has been defeated!");
+                        humanLvlUp.levelUp(player, monster);
+                    }
+                    break;
+                case 4:
                     potionLogic.healthPotion(player);
                     break;
                 default:

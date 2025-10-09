@@ -32,6 +32,8 @@ import java.util.Scanner;
         public void initializePlayer(Player player) {
             player.setAlive(true);
             player.setGold(50);
+            player.setMana(100 + (player.getIntelligence() * 7));
+            player.setMaximumMana(player.getMana());
             double hp;
             hp = 100 + (player.getStrength() * 5);
             player.setHp(hp);

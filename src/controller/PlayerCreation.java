@@ -1,14 +1,18 @@
 package controller;
 
 import DBConnection.PlayerDAO;
+import DBConnection.SkillDAO;
 import model.Player;
+import model.Skill;
 import service.player.InitializePlayer;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class PlayerCreation {
+
     PlayerDAO playerDAO = new PlayerDAO();
+    SkillDAO skillDAO = new SkillDAO();
     InitializePlayer initializePlayer = new InitializePlayer();
     public Player creationPlayer() {
         Player player = new Player();
@@ -18,6 +22,7 @@ public class PlayerCreation {
             System.out.println("There is no player in the Database, create a new one");
             initializePlayer.createPlayer(player);
             initializePlayer.initializePlayer(player);
+            skillDAO.setFirstSkill(player);
             return player;
         }
         System.out.println("You have players created, they will appear here:");

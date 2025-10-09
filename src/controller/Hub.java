@@ -60,7 +60,6 @@ public class Hub {
                     //TODO: Here goes Adventure guild logic or Quest logic.
                     break;
                 case 4:
-                    //TODO: Here goes adventures logic
                     System.out.println("You decide to go for adventures!");
                     System.out.println("Where you want to go?");
                     System.out.println("1. Forest");
