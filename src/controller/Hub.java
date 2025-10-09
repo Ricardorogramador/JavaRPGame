@@ -3,6 +3,7 @@ package controller;
 import model.Player;
 import service.hub.AdventureService;
 import service.hub.InnService;
+import service.hub.ShopService;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -11,6 +12,7 @@ public class Hub {
 
     public void hub(Player player) throws InterruptedException {
         InnService innService = new InnService();
+        ShopService service = new ShopService();
         Random random = new Random();
         AdventureService adventure = new AdventureService();
         System.out.println("Welcome to the Hub.");
@@ -55,6 +57,36 @@ public class Hub {
                     break;
                 case 2:
                     //TODO: Here goes shop logic.
+                    System.out.println("You wandered around the market and see different shops");
+                    System.out.println("1. Weapon shop");
+                    System.out.println("2. Armor shop");
+                    System.out.println("3. Magic shop");
+                    System.out.println("4. Potion shop");
+                    System.out.println("5. Leave");
+                    option = input.nextInt();
+                    switch (option){
+                        case 1:
+                            //TODO: Here goes weapon shop logic
+                            break;
+                        case 2:
+                            //TODO: Here goes Armor shop logic
+                            break;
+                        case 3:
+                            System.out.println("You see a beautiful woman with a orb in her hands and some shelves with book in the back");
+                            System.out.println("Woman: Hey, are you looking for new skills? ");
+                            System.out.println("Woman: Here is my catalogue, purchase your venom");
+                            service.showSkillInShop(player);
+                            break;
+                        case 4:
+                            //TODO: Here goes potion shop logic
+                            break;
+                        case 5:
+                            System.out.println("Nothing catch your attention so you decide to leave");
+                            break;
+                        default:
+                            System.out.println("You walk through the market but nothing catch your attention");
+                            break;
+                    }
                     break;
                 case 3:
                     //TODO: Here goes Adventure guild logic or Quest logic.
