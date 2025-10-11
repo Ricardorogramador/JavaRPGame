@@ -38,6 +38,7 @@ public class PlayerDAO {
                 player.setHealthPotion(rs.getInt("healthpotion"));
                 player.setManaPotion(rs.getInt("manapotion"));
                 player.setAlive(rs.getBoolean("alive"));
+                player.setGold(rs.getInt("gold"));
                 players.add(player);
             }
         } catch (Exception e) {

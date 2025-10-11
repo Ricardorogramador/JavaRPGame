@@ -1,3 +1,4 @@
+import DBConnection.PlayerDAO;
 import controller.*;
 import service.player.*;
 import service.hub.*;
@@ -23,11 +24,12 @@ public class Main {
             option = scanner.nextInt();
             switch (option){
                 case 1:
-                    //model.Player creation
                     PlayerCreation playerCreation = new PlayerCreation();
                     Player player = playerCreation.creationPlayer();
                     Hub hub = new Hub();
                     hub.hub(player);
+                    PlayerDAO playerDAO = new PlayerDAO();
+                    playerDAO.updatePlayer(player);
                     break;
                 case 2:
                     System.out.println("GoodBye");
