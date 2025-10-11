@@ -35,9 +35,9 @@ public class HumanLvlUp implements LevelUpStrategy {
     }
 
     private double getXpMultiplier(int level) {
-        if (level <= 5) return 1.3;
-        else if (level <= 10) return 1.4;
-        else return 1.5;
+        if (level <= 10) return 1.2;
+        else if (level <= 20) return 1.3;
+        else return 1.4;
     }
 
     private void handleLevelUp(Player player, double multiplier) {
