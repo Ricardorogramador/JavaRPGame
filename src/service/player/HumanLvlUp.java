@@ -18,17 +18,20 @@ public class HumanLvlUp implements LevelUpStrategy {
         double xpGain = Math.round(player.getWisdom() * 1.2) + monster.getGiveXP();
         double xpTotal = player.getXp() + xpGain;
         double xpNeeded = player.getMaximumXP();
-        player.setXp(xpTotal);
 
         double multiplier = getXpMultiplier(player.getLevelPlayer());
 
         while (xpTotal >= xpNeeded) {
-            handleLevelUp(player, xpGain, xpTotal, multiplier);
             xpTotal -= xpNeeded;
+            handleLevelUp(player, multiplier);
             xpNeeded = player.getMaximumXP();
         }
+
+        player.setXp(xpTotal);
+        playerDAO.updatePlayer(player);
+
         System.out.println("XP gained: " + xpGain);
-        System.out.println("Your xp -> " + player.getXp() + "/" + player.getMaximumXP() + " <- XP needed to lvl up");
+        System.out.println("Your XP -> " + player.getXp() + "/" + player.getMaximumXP() + " <- XP needed to lvl up");
     }
 
     private double getXpMultiplier(int level) {
@@ -37,7 +40,7 @@ public class HumanLvlUp implements LevelUpStrategy {
         else return 1.5;
     }
 
-    private void handleLevelUp(Player player, double xpGain, double xpTotal, double multiplier) {
+    private void handleLevelUp(Player player, double multiplier) {
         int newLevel = player.getLevelPlayer() + 1;
         System.out.println("You level up!");
         System.out.println("Your new level is: " + newLevel);
@@ -48,10 +51,5 @@ public class HumanLvlUp implements LevelUpStrategy {
         player.setLevelPlayer(newLevel);
         player.setMaximumXP(player.getMaximumXP() * multiplier);
         player.setHp(player.getMaximumHP());
-        player.setXp(xpTotal);
-        playerDAO.updatePlayer(player);
-
-        System.out.println("XP gained: " + xpGain);
-        System.out.println("Your xp -> " + player.getXp() + "/" + player.getMaximumXP() + " <- XP needed to lvl up");
     }
 }

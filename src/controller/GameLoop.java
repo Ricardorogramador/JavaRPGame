@@ -9,6 +9,7 @@ import service.battle.MonsterTurn;
 import service.battle.PotionLogic;
 import service.battle.SkillsLogic;
 import service.event.RestEvent;
+import service.hub.quest.QuestCompletionService;
 import service.player.HumanLvlUp;
 
 import java.util.Random;
@@ -28,6 +29,7 @@ public class GameLoop {
     private final HumanLvlUp humanLvlUp = new HumanLvlUp();
     private final SkillsLogic skillsLogic = new SkillsLogic();
     private final MonsterTurn monsterTurn = new MonsterTurn();
+    private final QuestCompletionService questCompletionService = new QuestCompletionService();
 
     private int totalSteps = 0;
     private int stepsTaken = 0;
@@ -88,6 +90,7 @@ public class GameLoop {
                     monsterTurn.monsterAttack(player,monster);
                     if (monster.getHp() <= 0) {
                         System.out.println(monster.getName() + " has been defeated!");
+                        questCompletionService.checkQuestProgress(player,monster);
                         humanLvlUp.levelUp(player, monster);
                     }
                     break;
@@ -95,6 +98,7 @@ public class GameLoop {
                     battleLogic.defend(player, monster);
                     if (monster.getHp() <= 0) {
                         System.out.println(monster.getName() + " has been defeated!");
+                        questCompletionService.checkQuestProgress(player,monster);
                         humanLvlUp.levelUp(player, monster);
                     }
                     break;
@@ -103,6 +107,7 @@ public class GameLoop {
                     monsterTurn.monsterAttack(player,monster);
                     if (monster.getHp() <= 0) {
                         System.out.println(monster.getName() + " has been defeated!");
+                        questCompletionService.checkQuestProgress(player,monster);
                         humanLvlUp.levelUp(player, monster);
                     }
                     break;

@@ -1,16 +1,24 @@
 package controller;
 
+import DBConnection.QuestDAO;
 import model.Player;
+import model.Quest;
 import service.hub.AdventureService;
 import service.hub.InnService;
 import service.hub.ShopService;
+import service.hub.quest.QuestCompletionService;
+import service.hub.quest.QuestService;
 
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Hub {
 
     public void hub(Player player) throws InterruptedException {
+        QuestDAO questDAO = new QuestDAO();
+        QuestCompletionService qcs = new QuestCompletionService();
+        QuestService questService = new QuestService();
         InnService innService = new InnService();
         ShopService service = new ShopService();
         Random random = new Random();
@@ -90,6 +98,45 @@ public class Hub {
                     break;
                 case 3:
                     //TODO: Here goes Adventure guild logic or Quest logic.
+                    System.out.println("You enter the Adventurer's Guild.");
+                    System.out.println("Behind the counter, a woman greets you with a kind smile.");
+                    System.out.println("Receptionist: Welcome, adventurer! Are you here for a quest?");
+                    System.out.println("1. Show available quests");
+                    System.out.println("2. Show my active quests");
+                    System.out.println("3. Report a completed quest");
+                    System.out.println("4. Leave the guild");
+                    option = input.nextInt();
+                    switch (option){
+                        case 1:
+                            questService.showQuest(player);
+                            break;
+                        case 2:
+                         List<Quest> activeQuest = questDAO.getAssociatedQuest(player.getId());
+                         if (activeQuest.isEmpty()){
+                             System.out.println("You don't have active quest right now");
+                         } else {
+                             System.out.println("=== Your active quests ===");
+                             for (Quest quest : activeQuest){
+                                 System.out.println("• " + quest.getQuestName() + " - " + quest.getQuestDescription());
+                             }
+                         }
+                            break;
+                        case 3:
+                            List<Quest> completedQuests = questDAO.getCompletedQuest(player.getId());
+                            if (completedQuests.isEmpty()) {
+                                System.out.println("You haven't completed any quests yet.");
+                            } else {
+                                System.out.println("=== Completed Quests ===");
+                                for (Quest quest : completedQuests) {
+                                    System.out.println("• " + quest.getQuestName() + " (Reward: " + quest.getGoldQuest() + " gold, "
+                                            + quest.getXpQuest() + " XP)");
+                                }
+                            }
+                            break;
+                        case 4:
+                            System.out.println("You decide to do other thing");
+                            break;
+                    }
                     break;
                 case 4:
                     System.out.println("You decide to go for adventures!");
